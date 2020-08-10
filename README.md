@@ -1,6 +1,3 @@
----
-permalink: /index.html
----
 ## React Project - Basketball Scoreboard
 
 ### `Online Display`
