@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Team from "./components/Team";
+import "./App.css";
+
+import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import themeFile from "./utils/theme";
+
+// Redux
+import { Provider } from "react-redux";
+import store from "./redux/store";
+
+const theme = createMuiTheme(themeFile);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <MuiThemeProvider theme={theme}>
+            <Provider store={store}>
+                <div className="App">
+                    <Team />
+                </div>
+            </Provider>
+        </MuiThemeProvider>
+    );
 }
 
 export default App;
