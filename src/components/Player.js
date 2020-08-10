@@ -2,10 +2,8 @@ import React, { Component, Fragment } from "react";
 // import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 
 // import AccountCircle from "@material-ui/icons/AccountCircle";
@@ -40,7 +38,7 @@ class Player extends Component {
     };
     handleAddScoreOne = () => {
         console.log(this.props.player);
-        this.props.addScore(1, this.props.team, "score");
+        this.props.addScore(1, this.props.team);
         this.props.addPlayerScore(1, this.props.team, this.props.player);
     };
     handleAddScoreTwo = () => {
@@ -51,29 +49,48 @@ class Player extends Component {
         this.props.addScore(3, this.props.team);
         this.props.addPlayerScore(3, this.props.team, this.props.player);
     };
+    handleMinusScore = () => {
+        this.props.addScore(-1, this.props.team);
+        this.props.addPlayerScore(-1, this.props.team, this.props.player);
+    };
     handleAddRebound = () => {
         this.props.addRebound(1, this.props.team);
         this.props.addPlayerRebound(1, this.props.team, this.props.player);
+    };
+    handleMinusRebound = () => {
+        this.props.addRebound(-1, this.props.team);
+        this.props.addPlayerRebound(-1, this.props.team, this.props.player);
     };
     handleAddAssist = () => {
         this.props.addAssist(1, this.props.team);
         this.props.addPlayerAssist(1, this.props.team, this.props.player);
     };
+    handleMinusAssist = () => {
+        this.props.addAssist(-1, this.props.team);
+        this.props.addPlayerAssist(-1, this.props.team, this.props.player);
+    };
     handleAddFoul = () => {
         this.props.addFoul(1, this.props.team);
         this.props.addPlayerFoul(1, this.props.team, this.props.player);
     };
+    handleMinusFoul = () => {
+        this.props.addFoul(-1, this.props.team);
+        this.props.addPlayerFoul(-1, this.props.team, this.props.player);
+    };
     onChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
-        this.props.changePlayerName(event.target.value, this.props.team, this.props.player);
+        this.props.changePlayerName(
+            event.target.value,
+            this.props.team,
+            this.props.player
+        );
     };
 
     render() {
-        const { classes } = this.props;
         return (
             <Fragment>
                 <Grid container spacing={2}>
-                    <Grid item sm={3}>
+                    <Grid item sm={3} align="left">
                         <TextField
                             color={this.props.color}
                             name="body"
@@ -84,7 +101,7 @@ class Player extends Component {
                             onChange={this.onChange}
                         />
                     </Grid>
-                    <Grid item sm={4} style={{ padding: "auto" }}>
+                    <Grid item sm={4} align="center">
                         <ButtonGroup
                             color={this.props.color}
                             variant="contained"
@@ -108,39 +125,88 @@ class Player extends Component {
                             >
                                 +3
                             </Button>
+                            <Button
+                                variant="outlined"
+                                size="small"
+                                onClick={this.handleMinusScore}
+                            >
+                                -1
+                            </Button>
                         </ButtonGroup>
                     </Grid>
-                    <Grid item sm={5}>
+                    <Grid item sm={5} align="center">
                         <Grid container spacing={0}>
                             <Grid item sm={4}>
-                                <Button
-                                    size="small"
-                                    variant="outlined"
+                                <ButtonGroup
                                     color={this.props.color}
-                                    onClick={this.handleAddRebound}
+                                    variant="contained"
+                                    aria-label="contained primary button group"
                                 >
-                                    +1
-                                </Button>
+                                    <Button
+                                        size="small"
+                                        variant="contained"
+                                        color={this.props.color}
+                                        onClick={this.handleAddRebound}
+                                    >
+                                        +1
+                                    </Button>
+                                    <Button
+                                        size="small"
+                                        variant="outlined"
+                                        color={this.props.color}
+                                        onClick={this.handleMinusRebound}
+                                    >
+                                        -1
+                                    </Button>
+                                </ButtonGroup>
                             </Grid>
                             <Grid item sm={4}>
-                                <Button
-                                    size="small"
-                                    variant="outlined"
+                                <ButtonGroup
                                     color={this.props.color}
-                                    onClick={this.handleAddAssist}
+                                    variant="contained"
+                                    aria-label="contained primary button group"
                                 >
-                                    +1
-                                </Button>
+                                    <Button
+                                        size="small"
+                                        variant="contained"
+                                        color={this.props.color}
+                                        onClick={this.handleAddAssist}
+                                    >
+                                        +1
+                                    </Button>
+                                    <Button
+                                        size="small"
+                                        variant="outlined"
+                                        color={this.props.color}
+                                        onClick={this.handleMinusAssist}
+                                    >
+                                        -1
+                                    </Button>
+                                </ButtonGroup>
                             </Grid>
                             <Grid item sm={4}>
-                                <Button
-                                    size="small"
-                                    variant="outlined"
+                                <ButtonGroup
                                     color={this.props.color}
-                                    onClick={this.handleAddFoul}
+                                    variant="contained"
+                                    aria-label="contained primary button group"
                                 >
-                                    +1
-                                </Button>
+                                    <Button
+                                        size="small"
+                                        variant="contained"
+                                        color={this.props.color}
+                                        onClick={this.handleAddFoul}
+                                    >
+                                        +1
+                                    </Button>
+                                    <Button
+                                        size="small"
+                                        variant="outlined"
+                                        color={this.props.color}
+                                        onClick={this.handleMinusFoul}
+                                    >
+                                        -1
+                                    </Button>
+                                </ButtonGroup>
                             </Grid>
                         </Grid>
                     </Grid>

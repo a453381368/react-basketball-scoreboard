@@ -5,7 +5,8 @@ import Grid from "@material-ui/core/Grid";
 class PlayerList extends Component {
     render() {
         return (
-            <Grid container spacing={2}>
+            <Grid container spacing={2} style={{marginTop:220}}>
+                
                 <Grid item sm={6}>
                     <Player team="teamA" player="player1" color="primary" />
                     <Player team="teamA" player="player2" color="primary" />

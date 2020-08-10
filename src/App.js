@@ -1,5 +1,5 @@
 import React from "react";
-import Team from "./components/Team";
+import Home from "./pages/Home";
 import "./App.css";
 
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
@@ -17,7 +17,7 @@ function App() {
         <MuiThemeProvider theme={theme}>
             <Provider store={store}>
                 <div className="App">
-                    <Team />
+                    <Home />
                 </div>
             </Provider>
         </MuiThemeProvider>

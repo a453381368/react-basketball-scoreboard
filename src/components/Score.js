@@ -2,9 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
-import Card from "@material-ui/core/Card";
+import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
+import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
+import ScoreboardLable from "../components/ScoreboardLable";
+
+import { playerReset } from "../redux/actions/playerActions";
+import { reset } from "../redux/actions/scoreActions";
 
 const styles = {
     root: {
@@ -19,6 +24,11 @@ const styles = {
 };
 
 class Score extends Component {
+    handleReset = () => {
+        this.props.reset();
+        this.props.playerReset();
+    };
+
     render() {
         const { classes } = this.props;
         const {
@@ -32,25 +42,58 @@ class Score extends Component {
             // foulB,
         } = this.props;
         return (
-            <Grid container spacing={2}>
-                <Grid item sm={5} align="right">
-                    <Paper className={classes.root}>
-                        <Typography className={classes.title} color="primary">
-                            {scoreA}
-                        </Typography>
-                    </Paper>
+            <AppBar position="fixed" color="default">
+                <Grid container spacing={2}>
+                    <Grid item sm={5} align="right">
+                        <Paper className={classes.root}>
+                            <Typography
+                                className={classes.title}
+                                color="primary"
+                            >
+                                {scoreA}
+                            </Typography>
+                        </Paper>
+                        <br />
+                        <Button variant="outlined" size="large" color="primary">
+                            Total Statics
+                        </Button>
+                    </Grid>
+                    <Grid item sm={2} align="center">
+                        <Typography className={classes.title}>:</Typography>
+                    </Grid>
+                    <Grid item sm={5} align="left">
+                        <Paper className={classes.root}>
+                            <Typography
+                                className={classes.title}
+                                color="secondary"
+                            >
+                                {scoreB}
+                            </Typography>
+                        </Paper>
+                        <br />
+                        <Button
+                            variant="outlined"
+                            size="large"
+                            color="secondary"
+                            onClick={this.handleReset}
+                        >
+                            Reset Game
+                        </Button>
+                    </Grid>
                 </Grid>
-                <Grid item sm={2} align="center">
-                    <Typography className={classes.title}>:</Typography>
+                <Grid container>
+                    <Grid item sm={6} align="center">
+                        <br />
+                        <ScoreboardLable />
+                        <br />
+                    </Grid>
+                    <Grid item sm={6} align="center">
+                        <br />
+                        <ScoreboardLable />
+                        <br />
+                    </Grid>
                 </Grid>
-                <Grid item sm={5} align="left">
-                    <Paper className={classes.root}>
-                        <Typography className={classes.title} color="secondary">
-                            {scoreB}
-                        </Typography>
-                    </Paper>
-                </Grid>
-            </Grid>
+            </AppBar>
         );
     }
 }
@@ -66,4 +109,6 @@ const mapStateToProps = (state) => ({
     // foulB: state.scoreboard.teamB.foul,
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(Score));
+export default connect(mapStateToProps, { playerReset, reset })(
+    withStyles(styles)(Score)
+);
