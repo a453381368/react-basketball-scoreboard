@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e041d376e10533918c979c3c1889fae0",
+    "revision": "72771b7ab144e6592f3b2356e0d6f29b",
     "url": "/react-basketball-scoreboard/index.html"
   },
   {
