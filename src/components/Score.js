@@ -7,6 +7,12 @@ import Paper from "@material-ui/core/Paper";
 import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
 import ScoreboardLable from "../components/ScoreboardLable";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Slide from "@material-ui/core/Slide";
 
 import { playerReset } from "../redux/actions/playerActions";
 import { reset } from "../redux/actions/scoreActions";
@@ -23,10 +29,25 @@ const styles = {
     },
 };
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
+
 class Score extends Component {
+    state = {
+        open: false,
+    };
     handleReset = () => {
         this.props.reset();
         this.props.playerReset();
+        this.setState({ open: false });
+    };
+    handleClickOpen = () => {
+        this.setState({ open: true });
+    };
+
+    handleClose = () => {
+        this.setState({ open: false });
     };
 
     render() {
@@ -75,10 +96,45 @@ class Score extends Component {
                             variant="outlined"
                             size="large"
                             color="secondary"
-                            onClick={this.handleReset}
+                            onClick={this.handleClickOpen}
                         >
                             Reset Game
                         </Button>
+                        <Dialog
+                            open={this.state.open}
+                            TransitionComponent={Transition}
+                            keepMounted
+                            onClose={this.handleClose}
+                            aria-labelledby="alert-dialog-slide-title"
+                            aria-describedby="alert-dialog-slide-description"
+                        >
+                            <DialogTitle id="alert-dialog-slide-title">
+                                {"Confirm Reset Game"}
+                            </DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-slide-description">
+                                    You're going to RESET the game.
+                                    <br />
+                                    All data will be wiped.
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button
+                                    onClick={this.handleClose}
+                                    color="default"
+                                    variant="contained"
+                                >
+                                    Cancel
+                                </Button>
+                                <Button
+                                    onClick={this.handleReset}
+                                    color="secondary"
+                                    variant="contained"
+                                >
+                                    Confirm
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
                     </Grid>
                 </Grid>
                 <Grid container>

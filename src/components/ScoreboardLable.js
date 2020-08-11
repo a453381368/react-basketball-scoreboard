@@ -21,13 +21,13 @@ class ScoreboardLable extends Component {
                     </Grid>
                     <Grid item sm={5} align="center">
                         <Grid container spacing={0}>
-                            <Grid item sm={4}>
+                            <Grid item sm={4} align="center">
                                 Rebound
                             </Grid>
-                            <Grid item sm={4}>
+                            <Grid item sm={4} align="center">
                                 Assist
                             </Grid>
-                            <Grid item sm={4}>
+                            <Grid item sm={4} align="center">
                                 Foul
                             </Grid>
                         </Grid>

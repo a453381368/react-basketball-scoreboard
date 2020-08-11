@@ -12,5 +12,10 @@ export default {
             dark: "#b22a00",
             contrastText: "#fff",
         },
+        error: {
+            light: "#e57373",
+            main: "#f44336",
+            dark: "#d32f2f",
+        },
     },
 };
