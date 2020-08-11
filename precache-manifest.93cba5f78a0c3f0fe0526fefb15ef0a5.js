@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5cd72e44b32d1a2105364564a12978c8",
+    "revision": "25e8bce466913d6dce455cf1ed145b9a",
     "url": "/react-basketball-scoreboard/index.html"
   },
   {
-    "revision": "bd5131c8e279a284bfd3",
+    "revision": "837b4fbd300849a955c5",
     "url": "/react-basketball-scoreboard/static/css/main.422b932a.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-basketball-scoreboard/static/js/2.be6a47c9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bd5131c8e279a284bfd3",
-    "url": "/react-basketball-scoreboard/static/js/main.4298815d.chunk.js"
+    "revision": "837b4fbd300849a955c5",
+    "url": "/react-basketball-scoreboard/static/js/main.efe08eb2.chunk.js"
   },
   {
     "revision": "873fcbab67236d2f6469",
